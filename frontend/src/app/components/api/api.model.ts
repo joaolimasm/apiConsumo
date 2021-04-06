@@ -1,5 +1,4 @@
 export interface Api {
-
     abv: string;
     address: string;
     category: string;

@@ -1,43 +1,31 @@
-import { Api } from './../api.model';
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-api-view',
   templateUrl: './api-view.component.html',
   styleUrls: ['./api-view.component.css']
 })
 export class ApiViewComponent implements OnInit {
-
-  api: Api = {
-    abv: 'string',
-    address: 'string',
-    category: 'string',
-    city: 'string',
-    cordinates: 'string',
-    country: 'string',
-    description: 'string',
-    ibu: 'string',
-    name: 'string',
-    state: 'string',
-    website: 'string',
-  };
+  dataSource: any;
 
   constructor(private apiService: ApiService,
     private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getData();
   }
 
-  getData(): void {
-
-    this.apiService.getAll().subscribe((res) => {
-      this.apiService.showMessage('Api All');
-      this.router.navigate(['/api'])
-      console.log(res);
-
-    })
+  async getData(): Promise<void> {
+    await this.apiService
+      .getAll()
+      .subscribe((res: any) => {
+        this.apiService.showMessage('Api All');
+        this.dataSource = res;
+    });
   }
+
   findRandom() {
     this.apiService.getRandom(1).subscribe((res) => {
       this.apiService.showMessage('Api Random');
