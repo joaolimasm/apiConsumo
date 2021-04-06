@@ -1,6 +1,7 @@
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-api-view',
@@ -10,8 +11,10 @@ import { Router } from '@angular/router';
 export class ApiViewComponent implements OnInit {
   dataSource: any;
 
+
   constructor(private apiService: ApiService,
     private router: Router) { }
+
 
   async ngOnInit(): Promise<void> {
     await this.getData();
@@ -23,11 +26,11 @@ export class ApiViewComponent implements OnInit {
       .subscribe((res: any) => {
         this.apiService.showMessage('Api All');
         this.dataSource = res;
-    });
+      });
   }
 
   findRandom() {
-    this.apiService.getRandom(1).subscribe((res) => {
+    this.apiService.getRandom(10).subscribe((res) => {
       this.apiService.showMessage('Api Random');
       this.router.navigate(['/api'])
       console.log(res);

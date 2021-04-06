@@ -5,40 +5,46 @@
 <button mat-raised-button (click)="findRandom()">
     RANDOM
 </button>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ABV</th>
-            <th>Endereço</th>
-            <th>Descrição</th>
-            <th>Categoria</th>
-            <th> Cidade</th>
-            <th>Coordenadas</th>
-            <th>País</th>
-            <th>  Ibu </th>
-            <th>  Nome </th>
-            <th> Estado </th>
-            <th>  Website </th>
+<div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 30]">
+    </mat-paginator>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ABV</th>
+                <th>Endereço</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th> Cidade</th>
+                <th>Coordenadas</th>
+                <th>País</th>
+                <th> Ibu </th>
+                <th> Nome </th>
+                <th> Estado </th>
+                <th> Website </th>
             </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of dataSource; let i = index;" id="{{data.abv}}">
-            <td>{{ data.abv }}</td>
-            <td>{{ data.address }}</td>
-            <td>{{ data.description }}</td>
-            <td>{{ data.category }}</td>
-            <td>{{ data.city }}</td>
-            <td>{{ data.cordinates }}</td>
-            <td>{{ data.country }}</td>
-            <td>{{ data.ibu }}</td>
-            <td>{{ data.name }}</td>
-            <td>{{ data.state }}</td>
-            <td>{{ data.website }}</td>
-            
-            <!--<td id="{{ i }}"> Detalhar </td> <!-- redicionar para uma tela de detalhes -->-->
-        </tr>
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let data of dataSource; let i = index;" id="{{data.abv}}">
+                <td>{{ data.abv }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.description }}</td>
+                <td>{{ data.category }}</td>
+                <td>{{ data.city }}</td>
+                <td>{{ data.cordinates }}</td>
+                <td>{{ data.country }}</td>
+                <td>{{ data.ibu }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.state }}</td>
+                <td>{{ data.website }}</td>
+                <!--<td id="{{ i }}"> Detalhar </td> <!-- redicionar para uma tela de detalhes -->
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
 <!-- <mat-paginator #paginator
 [length]="dataSource?.data.lenght"
 [pageIndex]="0"
